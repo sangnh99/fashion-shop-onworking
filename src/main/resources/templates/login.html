@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+            crossorigin="anonymous"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css"
+          rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600&display=swap" rel="stylesheet">
+    <link href="css/login.css" rel="stylesheet">
+    <script language="JavaScript">
+        function checkInput() {
+            var password = document.getElementById("password").value;
+            var username = document.getElementById("username").value;
+            var error = document.getElementById("error");
+            if (password == "" || username == "") {
+                error.style.display = "inline";
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+<section class="login-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 login-sec">
+                <h2 class="text-center" style="font-family: 'Nunito Sans', sans-serif;">Đăng nhập</h2>
+
+                <form class="login-form" th:action="@{/j_spring_security_login}" onsubmit="return checkInput()"
+                      method="post">
+                    <div class="form-group">
+                        <label class="text-uppercase">Tài khoản</label>
+                        <input type="text" class="form-control" placeholder="Nhập tài khoản" id="username"
+                               name="username"
+                               style="height: 6vh;">
+                    </div>
+                    <div class="form-group">
+                        <label class="text-uppercase">Mật khẩu</label>
+                        <input type="password" class="form-control" placeholder="Nhập mật khẩu" id="password"
+                               name="password"
+                               style="height: 6vh;">
+                    </div>
+
+                    <div>
+                        <div style="float: left">
+                            <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" style=" width: 2vh;" name="remember-me">
+                                <small>Remember Me</small>
+                            </label>
+                        </div>
+                        <div style="float: right"><a href="/forgot_password">Quên mật khẩu?</a></div>
+                    </div>
+                    <div>
+
+                    </div>
+                    <button type="submit" class="btn btn-login float-right"
+                            style=" margin-top: 4vh; margin-left: 20vh;">Submit
+                    </button>
+                </form>
+                <div style=" position: absolute;
+                             width: 80%;
+                             bottom: 80px;
+                             color: red;
+                             font-size: 13px;
+                             text-align: center;" id="nullerror"
+                     th:if="${#request.getParameter('message')=='error'}"> Tài khoản hoặc mật khẩu sai
+                </div>
+                <div style=" position: absolute;
+                             width: 80%;
+                             bottom: 55px;
+                             color: red;
+                             font-size: 13px;
+                             text-align: center;
+                             display: none;" id="error"> Điền đầy đủ thông tin
+                </div>
+<!--                <h4><a th:href="@{/oauth2/authorization/facebook}">aaaa-->
+
+<!--                </a></h4>-->
+                <a class="btn btn-lg btn-social btn-facebook" th:href="@{/oauth2/authorization/facebook}" style="background: #2c6ed5;position: absolute;bottom: 50px;margin-left: 60px">
+                    <i class="fa fa-facebook fa-fw"></i> Sign in with Facebook
+                </a>
+                <div class="copy-text">Chưa có tài khoản? <a href="/startRegister">Nhấn để đăng kí</a></div>
+
+
+            </div>
+            <div class="col-md-8 banner-sec" style="height: 80vh">
+                <img src="https://confidentials.com/uploads/imager/ade7dde507f2db8f6e1653f7be7c358a/797249/6fffe9185f921a3b13bd80a21c80bd5f.jpg"
+                     style="height: 80vh">
+                <div class="banner-text">
+                    <h2>Make your own style</h2>
+                    <h5>With creative flair, the house’s accessories take center stage, in close contact with
+                        materials.</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

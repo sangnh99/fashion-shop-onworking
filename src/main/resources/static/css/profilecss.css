@@ -1,0 +1,249 @@
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 250px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background-color: #f6f1eb;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 100%;
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.sidebar-nav li a {
+    display: none;
+    text-decoration: none;
+    color: #999999;
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand a {
+    color: #999999;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+    color: #fff;
+}
+
+@media (min-width: 768px) {
+    #wrapper {
+        padding-left: 250px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 60%;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-transition: 0.3s cubic-bezier(0.75, 0, 0.2, 1), color 0.3s ease;
+    transition: 0.3s cubic-bezier(0.75, 0, 0.2, 1), color 0.3s ease;
+}
+
+.rela-block {
+    display: block;
+    position: relative;
+    margin: auto;
+}
+
+.floated {
+    display: inline-block;
+    position: relative;
+    float: left;
+    font-size: 18px;
+}
+
+body {
+    font-family: "Roboto";
+    font-size: 18px;
+    letter-spacing: 2px;
+    font-weight: 400;
+    line-height: 24px;
+    background-color: #f6f1eb;
+}
+
+.nav-div li {
+    padding: 0 9px;
+    cursor: pointer;
+}
+
+.nav-div li:hover {
+    color: #2ebaae;
+}
+
+.sign-div li {
+    padding: 0 0 0 20px;
+}
+
+.menu-links li {
+    padding: 4px 10px;
+    margin: 4px 0;
+    cursor: pointer;
+}
+
+.menu-links li:hover {
+    color: #2ebaae;
+}
+
+.sildebar-container {
+    z-index: 1;
+    max-width: 1126px;
+    background-color: #f6f1eb;
+    margin: 10px auto;
+    padding: 20px 0;
+}
+
+.profile-card {
+    width: calc(100% - 40px);
+    padding-top: 100px;
+    margin: 70px auto 30px;
+    background-color: #fff;
+    box-shadow: 0 2px 6px -2px rgba(0, 0, 0, 0.26);
+}
+
+.profile-pic {
+    position: absolute;
+    top: -90px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    height: 180px;
+    width: 180px;
+    border: 10px solid #fff;
+    border-radius: 100%;
+    background-size: cover;
+}
+
+.profile-name-container {
+    margin: 0 auto 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+.user-name {
+    font-family: "Montserrat";
+    font-size: 24px;
+    letter-spacing: 3px;
+    font-weight: 400;
+    line-height: 30px;
+    margin-bottom: 12px;
+}
+
+.user-desc {
+    letter-spacing: 1px;
+    color: #999;
+}
+
+.profile-card-stats {
+    height: 75px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.profile-stat {
+    height: 100%;
+    width: 50%;
+}
+
+.profile-stat:after {
+    color: #999;
+}
+
+.works::after {
+    content: "Số điện thoại";
+}
+
+.followers::after {
+    content: "Email";
+}
+
+.idnumber::after {
+    content: "CMND";
+}
+
+.address::after {
+    content: "Địa chỉ";
+}
+
+.footer {
+    min-height: 240px;
+    border-top: 1px solid #d6d6d6;
+    background-color: #fff;
+    padding: 30px 40px;
+    text-align: center;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 1300px) {
+    .container {
+        max-width: 843px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .container {
+        max-width: 562px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .profile-card-stats {
+        height: 0;
+        padding: 0px;
+    }
+
+    .profile-pic {
+        height: 140px;
+        width: 140px;
+        top: -70px;
+    }
+
+    .profile-card {
+        padding-top: 70px;
+        margin: 50px auto 30px;
+    }
+}
+

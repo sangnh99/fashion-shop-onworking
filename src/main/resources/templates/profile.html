@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="css/style.css" rel="stylesheet">
+    <style type="text/css">
+        * {
+            box-sizing: border-box;
+            -webkit-transition: 0.3s cubic-bezier(0.75, 0, 0.2, 1), color 0.3s ease;
+            transition: 0.3s cubic-bezier(0.75, 0, 0.2, 1), color 0.3s ease;
+        }
+
+        .rela-block {
+            display: block;
+            position: relative;
+            margin: auto;
+        }
+
+        .floated {
+            display: inline-block;
+            position: relative;
+            float: left;
+        }
+
+        body {
+            font-family: "Roboto";
+            font-size: 18px;
+            letter-spacing: 2px;
+            font-weight: 400;
+            line-height: 24px;
+            background-color: #f6f1eb;
+        }
+
+        .nav-div li {
+            padding: 0 9px;
+            cursor: pointer;
+        }
+
+        .nav-div li:hover {
+            color: #2ebaae;
+        }
+
+        .sign-div li {
+            padding: 0 0 0 20px;
+        }
+
+        .menu-links li {
+            padding: 4px 10px;
+            margin: 4px 0;
+            cursor: pointer;
+        }
+
+        .menu-links li:hover {
+            color: #2ebaae;
+        }
+
+        .container {
+            z-index: 1;
+            width: 70%;
+            max-width: 1126px;
+            background-color: #f6f1eb;
+            margin: 10px auto;
+            padding: 20px 0;
+        }
+
+        .profile-card {
+            width: calc(100% - 40px);
+            padding-top: 100px;
+            margin: 70px auto 30px;
+            background-color: #fff;
+            box-shadow: 0 2px 6px -2px rgba(0, 0, 0, 0.26);
+        }
+
+        .profile-pic {
+            position: absolute;
+            top: -90px;
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+            height: 180px;
+            width: 180px;
+            border: 10px solid #fff;
+            border-radius: 100%;
+            background: url("https://i.pinimg.com/originals/46/f3/f9/46f3f9a6645d9a964b0fc9b1f0566a18.jpg") center no-repeat;
+            background-size: cover;
+        }
+
+        .profile-name-container {
+            margin: 0 auto 10px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .user-name {
+            font-family: "Montserrat";
+            font-size: 24px;
+            letter-spacing: 3px;
+            font-weight: 400;
+            line-height: 30px;
+            margin-bottom: 12px;
+        }
+
+        .user-desc {
+            letter-spacing: 1px;
+            color: #999;
+        }
+
+        .profile-card-stats {
+            height: 75px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .profile-stat {
+            height: 100%;
+            width: 50%;
+        }
+
+        .profile-stat:after {
+            color: #999;
+        }
+
+        .works::after {
+            content: "Số điện thoại";
+        }
+
+        .followers::after {
+            content: "Email";
+        }
+
+        .idnumber::after {
+            content: "CMND";
+        }
+
+        .password::after {
+            content: "Mật khẩu hiện tại";
+        }
+
+        .new_password::after {
+            content: "Mật khẩu mới";
+        }
+
+        .address::after {
+            content: "Địa chỉ";
+        }
+
+        @media screen and (max-width: 1300px) {
+            .container {
+                max-width: 843px;
+            }
+        }
+
+        @media screen and (max-width: 1000px) {
+            .container {
+                max-width: 562px;
+            }
+        }
+
+        @media screen and (max-width: 550px) {
+            .profile-card-stats {
+                height: 0;
+                padding: 0px;
+            }
+
+            .profile-pic {
+                height: 140px;
+                width: 140px;
+                top: -70px;
+            }
+
+            .profile-card {
+                padding-top: 70px;
+                margin: 50px auto 30px;
+            }
+        }
+
+        .infortag {
+            width: 95%;
+            line-height: 50px;
+            background: #fafafa;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            padding: 0 15px;
+            font-size: 16px;
+            color: #666;
+            -webkit-transition: all 0.4s ease;
+            -o-transition: all 0.4s ease;
+            -moz-transition: all 0.4s ease;
+            transition: all 0.4s ease;
+        }
+    </style>
+</head>
+<body>
+<form th:action="@{/editprofile}" method="post" th:object="${user}">
+    <input th:field="*{id}" th:value="*{id}" style="display: none">
+    <input th:field="*{password}" th:value="*{password}" style="display: none">
+    <input th:field="*{username}" th:value="*{username}" style="display: none">
+    <input th:field="*{role.id}" th:value="*{role.id}" style="display: none">
+    <input th:field="*{photo}" th:value="*{photo}" style="display: none">
+    <div class="rela-block container">
+        <div class="rela-block profile-card">
+            <div class="profile-pic" id="profile_pic"
+                 th:style="'background: url(' + ${user.photo} + ') center no-repeat;'"></div>
+            <div class="rela-block profile-name-container">
+                <div class="rela-block user-name" id="user_name" style="text-align: center;">
+                    <input th:field="*{name}" th:value="*{name}" style="text-align: center">
+                </div>
+                <div class="rela-block user-desc" id="user_description">Họ và tên</div>
+            </div>
+            <div class="rela-block profile-card-stats">
+                <div class="floated profile-stat works" id="phone">
+                    <input class="infortag" th:value="*{phone} " th:field="*{phone}" style="text-align: center">
+                </div>
+                <div class="floated profile-stat followers" id="email">
+                    <input class="infortag" th:field="*{email}" th:value="*{email}" readonly="true"
+                           style="text-align: center">
+                </div>
+            </div>
+            <div class="rela-block profile-card-stats" style="margin-top: 3vh;">
+                <div class="floated profile-stat idnumber" id="idnumber">
+                    <input class="infortag" th:field="*{idNumber}" th:value="*{idNumber}"
+                           style="text-align: center" readonly="true">
+                </div>
+                <div class="floated profile-stat address" id="address">
+                    <input class="infortag" th:field="*{address}" th:value="*{address}"
+                           style="text-align: center">
+                </div>
+            </div>
+            <br>
+        </div>
+        <div style="padding-left: 40%;">
+            <button type="button" class="btn btn-secondary btn-sm" style="font-size: 18px"
+                    th:type="submit">
+                Chỉnh sửa thông tin
+            </button>
+        </div>
+    </div>
+</form>
+</body>
+</html>

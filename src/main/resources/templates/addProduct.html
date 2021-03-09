@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sản phẩm</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <!--    <link href="/css/style.css" rel="stylesheet">-->
+    <style rel="stylesheet" type="text/css">
+        body{
+            font-size: 16px;
+        }
+        .file-upload{
+            font-size: 12px;
+        }
+        .file-upload1{
+            font-size: 12px;
+        }
+        .file-upload2{
+            font-size: 12px;
+        }
+        .file-upload3{
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+<th:block th:include="/menubar_for_admin"></th:block>
+<div class="container">
+    <form th:action="@{/handleAddProduct}" method="POST" enctype="multipart/form-data" th:object="${item}">
+
+        <div class="form-group">
+            <label for="name">Tên:</label>
+            <input type="text" class="form-control" placeholder="Nhập tên sản phẩm" id="name" name="name">
+        </div>
+
+        <div class="form-group">
+            <label for="detail">Chi tiết:</label>
+            <input type="text" class="form-control" placeholder="Nhập mô tả" id="detail" name="detail">
+        </div>
+
+        <div class="form-group">
+            <label for="price">Giá bán:</label>
+            <input type="number" class="form-control" placeholder="Nhập giá bán" id="price" name="price">
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label>Loại sản phẩm</label>
+                    <select th:field="*{}">
+                        <option th:each="i : ${categories}" th:value="${i.getName()}" th:text="${i.getName()}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <h2>Chọn các size </h2>
+        <!--        <th:block th:each="size:${sizes}">-->
+        <!--            <input type="checkbox" name="sizes" th:value="${size.getName()}"><span th:text="${size.getName()}"></span>&ensp;&ensp;-->
+        <!--        </th:block>-->
+
+        <table class="table table-striped">
+            <tr>
+                <th>Chọn</th>
+                <th>Size</th>
+                <th>Số lượng</th>
+            </tr>
+            <th:block th:each="size:${sizes}">
+                <tr>
+                    <td><input type="checkbox" name="sizes" th:value="${size.getName()}"></td>
+                    <td><span th:text="${size.getSize().getName()}"></span></td>
+                    <td><input type="number" th:field="${size.amount}"></td>
+                </tr>
+            </th:block>
+
+        </table>
+
+        <div class="row" style="margin-top: 50px;margin-left: 100px">
+            <div class="col-lg-6">
+                <input class="file-upload" type="file" name="photo-0" accept="image/*"/>
+                <img class="profile-pic" src="" height="200px" width="80%"/>
+            </div>
+            <div class="col-lg-6">
+                <input class="file-upload1" type="file" name="photo-1" accept="image/*"/>
+                <img class="profile-pic1" src="" height="200px" width="80%"/>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 50px;margin-left: 100px">
+            <div class="col-lg-6">
+                <input class="file-upload2" type="file" name="photo-2" accept="image/*"/>
+                <img class="profile-pic2" src="" height="200px" width="80%"/>
+            </div>
+            <div class="col-lg-6">
+                <input class="file-upload3" type="file" name="photo-3" accept="image/*"/>
+                <img class="profile-pic3" src="" height="200px" width="80%"/>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        var readURL = function(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('.profile-pic').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $(".file-upload").on('change', function(){
+            readURL(this);
+        });
+
+        $(".upload-button").on('click', function() {
+            $(".file-upload").click();
+        });
+        console.log(readURL(this));
+    });
+</script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        var readURL = function(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('.profile-pic2').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $(".file-upload2").on('change', function(){
+            readURL(this);
+        });
+
+        $(".upload-button").on('click', function() {
+            $(".file-upload2").click();
+        });
+        console.log(readURL(this));
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        var readURL = function(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('.profile-pic3').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $(".file-upload3").on('change', function(){
+            readURL(this);
+        });
+
+        $(".upload-button").on('click', function() {
+            $(".file-upload3").click();
+        });
+        console.log(readURL(this));
+    });
+</script>
+</body>
+</html>
